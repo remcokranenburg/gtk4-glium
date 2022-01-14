@@ -10,11 +10,7 @@ keywords = ["graphics", "gtk", "opengl", "glium", "gui"]
 categories = ["api-bindings", "graphics", "gui", "rendering", "rendering::graphics-api"]
 
 [dependencies]
-glib = "*"
-glium = "*"
-gl_loader = "*"
-
-[dependencies.gtk]
-package = "gtk4"
-version = "*"
-features = ["v4_2"]
+glib = "^0.14.8"
+glium = "^0.31.0"
+gl_loader = "^0.1.2"
+gtk4 = "^0.3.1"

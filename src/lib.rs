@@ -3,8 +3,8 @@ use glium::backend::{Backend, Context, Facade};
 use glium::debug::DebugCallbackBehavior;
 use glium::IncompatibleOpenGl;
 use glium::SwapBuffersError;
-use gtk::prelude::*;
-use gtk::GLArea;
+use gtk4::prelude::*;
+use gtk4::GLArea;
 use std::rc::Rc;
 
 struct GLAreaBackend {

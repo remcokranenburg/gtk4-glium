@@ -11,8 +11,8 @@ use glium::{
     program,
     uniform,
 };
-use gtk::prelude::*;
-use gtk::{
+use gtk4::prelude::*;
+use gtk4::{
     Application,
     ApplicationWindow,
     Box,
