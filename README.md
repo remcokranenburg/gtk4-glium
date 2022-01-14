@@ -1,10 +1,15 @@
 # gtk4-glium
 
-Use [Glium](https://github.com/glium/glium) to render on GTK windows.
+Use [Glium](https://github.com/glium/glium) to render with OpenGL on Gtk4
+windows, all in Rust.
 
 ## Example
 
 For a complete example, see `examples/triangle.rs`.
+
+![Triangle example](triangle-example.png)
+
+## Quick Start
 
 ```
 let facade = GtkFacade::from_glarea(&glarea);
