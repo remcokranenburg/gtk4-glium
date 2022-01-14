@@ -1,0 +1,14 @@
+[package]
+name = "gtk4_glium"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+glib = "*"
+glium = "*"
+gl_loader = "*"
+
+[dependencies.gtk]
+package = "gtk4"
+version = "*"
+features = ["v4_2"]
