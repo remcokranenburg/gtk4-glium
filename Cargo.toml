@@ -2,6 +2,12 @@
 name = "gtk4_glium"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
+description = "Use Gtk4 and Glium together"
+homepage = "https://remcokranenburg.com"
+repository = "https://github.com/remcokranenburg/gtk4-glium"
+keywords = ["graphics", "gtk", "opengl", "glium", "gui"]
+categories = ["api-bindings", "graphics", "gui", "rendering", "rendering::graphics-api"]
 
 [dependencies]
 glib = "*"
