@@ -24,3 +24,8 @@ glarea.connect_render(move |_glarea, _glcontext| {
     Inhibit(true)
 });
 ```
+
+## Authors
+
+* [@PonasKovas](https://github.com/PonasKovas) — Original author
+* [@remcokranenburg](https://github.com/remcokranenburg) — Turned it into a crate and updated it to Gtk4
