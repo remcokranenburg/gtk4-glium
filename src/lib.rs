@@ -29,7 +29,7 @@ unsafe impl Backend for GLAreaBackend {
         // factor.
         let scale = self.glarea.scale_factor();
 
-        ((allocation.width * scale) as u32, (allocation.height * scale) as u32)
+        ((allocation.width() * scale) as u32, (allocation.height() * scale) as u32)
     }
 
     fn is_current(&self) -> bool {
