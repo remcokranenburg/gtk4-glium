@@ -10,7 +10,7 @@ keywords = ["graphics", "gtk", "opengl", "glium", "gui"]
 categories = ["api-bindings", "graphics", "gui", "rendering", "rendering::graphics-api"]
 
 [dependencies]
-glib = "^0.15.0"
-glium = "^0.31.0"
+glib = "^0.18.0"
+glium = "^0.33.0"
 gl_loader = "^0.1.2"
-gtk4 = "^0.4.0"
+gtk4 = "^0.6.0"

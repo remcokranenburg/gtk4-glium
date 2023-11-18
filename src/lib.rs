@@ -32,6 +32,10 @@ unsafe impl Backend for GLAreaBackend {
         ((allocation.width() * scale) as u32, (allocation.height() * scale) as u32)
     }
 
+    fn resize(&self, _: (u32, u32)) {
+        // do nothing
+    }
+
     fn is_current(&self) -> bool {
         // GTK makes OpenGL current itself on each "render" signal
         true

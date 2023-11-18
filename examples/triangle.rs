@@ -132,7 +132,7 @@ fn main() {
         let frame_time = Duration::new(0, 1_000_000_000 / 60);
         glib::source::timeout_add_local(frame_time, move || {
             glarea.queue_draw();
-            glib::source::Continue(true)
+            glib::ControlFlow::Continue
         });
     });
 
