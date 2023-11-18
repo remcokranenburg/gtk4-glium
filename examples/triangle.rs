@@ -89,11 +89,11 @@ fn main() {
             .vexpand(true)
             .build();
 
-        let scale = Scale::with_range(Orientation::Horizontal, 0.0, 3.0, 0.1);
-        scale.set_value(1.0);
+        let rotation = Scale::with_range(Orientation::Horizontal, -10.0, 10.0, 0.1);
+        rotation.set_value(0.0);
 
         rows.append(&glarea);
-        rows.append(&scale);
+        rows.append(&rotation);
         window.set_child(Some(&rows));
         window.show();
 
@@ -105,14 +105,14 @@ fn main() {
         let program = create_program(&facade);
 
         glarea.connect_render(move |_glarea, _glcontext| {
-            let s = scale.value() as f32;
+            let r = rotation.value() as f32;
 
             let uniforms = uniform! {
                 matrix: [
-                    [  s, 0.0, 0.0, 0.0],
-                    [0.0,   s, 0.0, 0.0],
-                    [0.0, 0.0,   s, 0.0],
-                    [0.0, 0.0, 0.0, 1.0f32]
+                    [r.cos(), -r.sin(), 0.0, 0.1 * r],
+                    [r.sin(),  r.cos(), 0.0, 0.0],
+                    [    0.0,      0.0, 1.0, 0.0],
+                    [    0.0,      0.0, 0.0, 1.0f32]
                 ]
             };
 
