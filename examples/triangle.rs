@@ -17,7 +17,7 @@ use gtk4::{
     ApplicationWindow,
     Box,
     GLArea,
-    Inhibit,
+    glib::signal::Propagation,
     Orientation,
     Scale,
 };
@@ -124,7 +124,7 @@ fn main() {
                 &Default::default()).unwrap();
 
             frame.finish().unwrap();
-            Inhibit(true)
+            Propagation::Proceed
         });
 
         // This makes the GLArea redraw 60 times per second
