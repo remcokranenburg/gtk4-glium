@@ -28,4 +28,5 @@ glarea.connect_render(move |_glarea, _glcontext| {
 ## Authors
 
 * [@PonasKovas](https://github.com/PonasKovas) — Original author
-* [@remcokranenburg](https://github.com/remcokranenburg) — Turned it into a crate and updated it to Gtk4
+* [@remcokranenburg](https://github.com/remcokranenburg) — Current maintainer
+* [@faern](https://github.com/faern) — Contributor
