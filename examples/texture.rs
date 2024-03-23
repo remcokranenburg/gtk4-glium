@@ -54,7 +54,7 @@ fn load_texture<F: Facade>(context: &F) -> CompressedTexture2d {
     CompressedTexture2d::new(context, image).unwrap()
 }
 
-fn create_progarm<F: Facade>(context: &F) -> Program {
+fn create_program<F: Facade>(context: &F) -> Program {
     program!(context,
         140 => {
             vertex: "
@@ -115,7 +115,7 @@ fn main() {
 
         let opengl_texture = load_texture(&facade);
         let vertex_buffer = create_rectangle_buffer(&facade);
-        let program = create_progarm(&facade);
+        let program = create_program(&facade);
 
         glarea.connect_render(move |_glarea, _glcontext| {
             let context = facade.get_context();
