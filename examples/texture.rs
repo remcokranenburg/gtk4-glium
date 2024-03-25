@@ -5,7 +5,6 @@ use glium::{implement_vertex, program, uniform, Frame, Program, Surface, VertexB
 use gtk4::prelude::*;
 use gtk4::{glib::signal::Propagation, Application, ApplicationWindow, GLArea};
 use gtk4_glium::GtkFacade;
-use std::io::Cursor;
 use std::time::Duration;
 
 #[derive(Copy, Clone)]
@@ -40,13 +39,12 @@ fn create_rectangle_buffer<F: Facade>(context: &F) -> VertexBuffer<TexVertex> {
     .unwrap()
 }
 
-fn load_texture<F: Facade>(context: &F) -> CompressedTexture2d {
-    let image = image::load(
-        Cursor::new(&include_bytes!("opengl.png")[..]),
-        image::ImageFormat::Png,
-    )
-    .unwrap()
-    .to_rgba8();
+fn load_texture<F: Facade>(context: &F, filename: &str) -> CompressedTexture2d {
+    let image = image::io::Reader::open(filename)
+        .unwrap()
+        .decode()
+        .unwrap()
+        .to_rgba8();
 
     let image_dimensions = dbg!(image.dimensions());
     let image = RawImage2d::from_raw_rgba_reversed(&image.into_raw(), image_dimensions);
@@ -54,7 +52,7 @@ fn load_texture<F: Facade>(context: &F) -> CompressedTexture2d {
     CompressedTexture2d::new(context, image).unwrap()
 }
 
-fn create_progarm<F: Facade>(context: &F) -> Program {
+fn create_progam<F: Facade>(context: &F) -> Program {
     program!(context,
         140 => {
             vertex: "
@@ -75,17 +73,14 @@ fn create_progarm<F: Facade>(context: &F) -> Program {
             fragment: "
                 #version 140
 
+                uniform sampler2D dummy;
                 uniform sampler2D tex;
                 in vec2 v_tex_coords;
 
                 out vec4 f_color;
 
                 void main() {
-                    f_color = texture(tex, v_tex_coords);
-
-                    // Just setting the color draws a rectangle.
-                    // So everything in the setup seems to work, except sampling the texture
-                    // f_color = vec4(0.5, 0.1, 0.2, 1.0);
+                    f_color = texture(dummy, v_tex_coords) + texture(tex, v_tex_coords);
                 }
             "
         },
@@ -113,9 +108,10 @@ fn main() {
 
         let facade = GtkFacade::from_glarea(&glarea).unwrap();
 
-        let opengl_texture = load_texture(&facade);
+        let dummy_texture = load_texture(&facade, "examples/empty.bmp");
+        let opengl_texture = load_texture(&facade, "examples/opengl.png");
         let vertex_buffer = create_rectangle_buffer(&facade);
-        let program = create_progarm(&facade);
+        let program = create_progam(&facade);
 
         glarea.connect_render(move |_glarea, _glcontext| {
             let context = facade.get_context();
@@ -127,7 +123,8 @@ fn main() {
                     [0.0, 0.0, 1.0, 0.0],
                     [0.0, 0.0, 0.0, 1.0f32]
                 ],
-                tex: &opengl_texture
+                tex: &opengl_texture,
+                dummy: &dummy_texture,
             };
 
             let mut frame = Frame::new(context.clone(), context.get_framebuffer_dimensions());
