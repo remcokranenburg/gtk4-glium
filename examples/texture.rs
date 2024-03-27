@@ -113,12 +113,15 @@ fn main() {
 
         let facade = GtkFacade::from_glarea(&glarea).unwrap();
 
-        let opengl_texture = load_texture(&facade);
         let vertex_buffer = create_rectangle_buffer(&facade);
         let program = create_program(&facade);
 
         glarea.connect_render(move |_glarea, _glcontext| {
             let context = facade.get_context();
+
+            // GTK messes up the texture if I load it once on program start.
+            // If I load it just before I will draw with it, it works!
+            let opengl_texture = load_texture(&facade);
 
             let uniforms = uniform! {
                 matrix: [
