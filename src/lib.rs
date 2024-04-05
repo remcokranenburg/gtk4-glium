@@ -22,14 +22,15 @@ unsafe impl Backend for GLAreaBackend {
     }
 
     fn get_framebuffer_dimensions(&self) -> (u32, u32) {
-        let allocation = self.glarea.allocation();
+        let width = self.glarea.width();
+        let height = self.glarea.height();
 
         // On high-resolution screens, the number of pixels in the frame buffer
         // is higher than the allocation. This is indicated by the scale
         // factor.
         let scale = self.glarea.scale_factor();
 
-        ((allocation.width() * scale) as u32, (allocation.height() * scale) as u32)
+        ((width * scale) as u32, (height * scale) as u32)
     }
 
     fn resize(&self, _: (u32, u32)) {
