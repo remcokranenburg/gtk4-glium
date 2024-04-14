@@ -95,7 +95,7 @@ fn main() {
         rows.append(&glarea);
         rows.append(&rotation);
         window.set_child(Some(&rows));
-        window.show();
+        window.set_visible(true);
 
         let facade = GtkFacade::from_glarea(&glarea).unwrap();
 
