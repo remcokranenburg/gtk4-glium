@@ -11,6 +11,6 @@ categories = ["api-bindings", "graphics", "gui", "rendering", "rendering::graphi
 
 [dependencies]
 glib = "0.19.0"
-glium = "0.34.0"
+glium = { version = "0.34.0", default-features = false }
 gl_loader = "0.1.2"
 gtk4 = "0.8.0"
