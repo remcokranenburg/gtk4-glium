@@ -3,6 +3,8 @@
 Use [Glium](https://github.com/glium/glium) to render with OpenGL on Gtk4
 windows, all in Rust.
 
+**WARNING: Textures are not working yet! See [this](https://github.com/remcokranenburg/gtk4-glium/pull/2) for details.**
+
 ## Example
 
 For a complete example, see `examples/triangle.rs`.
